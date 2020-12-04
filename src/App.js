@@ -13,6 +13,7 @@ import Registration from './components/Registration/Registration';
 import Dashboard from './components/Dashboard/Dashboard';
 import LibrarianRoute from './components/PrivateRoutes/LibrarianRoute';
 import PrivateRoute from './components/PrivateRoutes/PrivateRoute';
+import NotFound from './components/NotFound/NotFound';
 
 function App() {
   return (
@@ -21,18 +22,19 @@ function App() {
       <div className="container py-5">
         <Switch>
           <Route exact path="/" component={Books} />
-          <PrivateRoute path="/book/request/:_id">
-            <RequestBook />
-          </PrivateRoute>
           <Route path="/login" component={Login} />
           <Route path="/registration" component={Registration} />
 
+          <PrivateRoute path="/book/request/:_id">
+            <RequestBook />
+          </PrivateRoute>
+
+          {/* only for librarian */}
           <LibrarianRoute path="/librarian/dashboard">
             <Dashboard />
           </LibrarianRoute>
 
-
-
+          <Route to="*" component={NotFound} />
         </Switch>
       </div>
       <Footer />
